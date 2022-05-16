@@ -1,4 +1,7 @@
 {
+  "globals": {
+    "module": true
+  },
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
@@ -12,7 +15,7 @@
     "prettier"
   ],
   "rules": {
-    "no-console": 1,       // Means warning
+    "no-console": 0,       // Means warning
     "prettier/prettier": 2 // Means error
   }
 }
