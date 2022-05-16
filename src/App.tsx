@@ -1,19 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { Settings } from '@mui/icons-material';
+import { Button } from '@mui/material';
+import HomeButton from './components/HomeButton';
+import HomeTitle from './components/HomeTitle';
 import './App.css';
 
 function App() {
+  const [isStart, setIsStart] = useState(true);
+  const onClick = () => setIsStart(false);
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
+    <div className='main-frame'>
+      <div className='main-window'>
+        <HomeTitle currentState={isStart} className={'main-header'} body={'HangMan'} transitionTime={1} />
+        <HomeButton currentState={isStart} onClick={onClick} className='easy button' body='Easy' transitionTime={1} />
+        <HomeButton currentState={isStart} onClick={onClick} className='button' body='Hard' transitionTime={1} />
+        <Button variant='contained' className='option' onClick={onClick}>
+          <Settings />
+        </Button>
+      </div>
     </div>
   );
 }

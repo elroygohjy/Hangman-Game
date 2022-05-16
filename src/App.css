@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
+.main-frame {
+  display: flex;
+  justify-content: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-window {
+  background-image: linear-gradient(to bottom right, #FFFBC2, #FDF196, #ECC876);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  width: 30vw;
+  height: 100vh;
+  position: relative;
+  border-radius: 10px;
+}
+.main-header {
+  font-family: Luckiest Guy, cursive;
+  position: absolute;
+  color: #36454F;
+  font-size: 6rem;
+  top: 5rem;
 }
 
-.App-link {
-  color: #61dafb;
+.button {
+  position: absolute;
+  width: 50%;
+  font-size: 2rem;
+  border-radius: 20px;
+  bottom: 1rem;
+  margin-left: 12%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.easy {
+  margin-bottom: 3rem;
+}
+
+.option {
+  position: absolute;
+  height: 5%;
+  aspect-ratio: 1;
+  top: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 700px) {
+  .main-window {
+    width: 100vw;
   }
 }
