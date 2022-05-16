@@ -7,6 +7,12 @@ body {
     sans-serif, 'Reglisse';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 code {

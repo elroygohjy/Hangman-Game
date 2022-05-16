@@ -11,7 +11,7 @@ const animation = {
     opacity: 1,
   },
   exit: {
-    y: '-100vh',
+    y: '-300px',
     opacity: 0,
   },
 };
