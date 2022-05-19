@@ -16,6 +16,8 @@
   ],
   "rules": {
     "no-console": 0,       // Means warning
-    "prettier/prettier": 2 // Means error
+    "prettier/prettier": 2,// Means error
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }
