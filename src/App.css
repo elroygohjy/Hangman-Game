@@ -50,11 +50,6 @@
   right: 0;
 }
 
-@media screen and (max-width: 700px) {
-  .main-window {
-    width: 100vw;
-  }
-}
 .header-bounce {
   animation-name: header-bounce;
   animation-timing-function: ease;
@@ -83,3 +78,34 @@
   background: black;
 }
 
+.sound-button {
+  width: 10px;
+  margin-bottom: 10px;
+}
+.credit-names {
+  width: 80%;
+}
+
+.modal-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+  display: flex;
+  background-color: white;
+  color: #405392;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .main-window {
+    width: 100vw;
+  }
+  .modal-box {
+    width: 90vw;
+  }
+}

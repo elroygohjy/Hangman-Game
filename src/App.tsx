@@ -5,6 +5,7 @@ import HomeButton from './components/HomeButton';
 import HomeTitle from './components/HomeTitle';
 // @ts-ignore
 import music from './music.mp3';
+import OptionMenu from './components/OptionMenu';
 import './App.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             onChange={e => setGuess(e.currentTarget.value)}
           />
         )}
+        <OptionMenu />
       </div>
     </div>
   );
