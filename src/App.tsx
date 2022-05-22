@@ -14,7 +14,7 @@ function App() {
   const [hasWon, setHasWon] = useState(false);
   const [guess, setGuess] = useState('');
   //Number of hangman lives/tries a user has
-  const [lives, setLives] = useState(6);
+  const [lives, setLives] = useState(1);
   //The letters that will be displayed to the user, '_' as an unguessed letter
   const [displayedWord, setDisplayedWord] = useState('');
   //For now only 1 word, will add more later https://www.ef.edu/english-resources/english-vocabulary/top-3000-words/
@@ -23,9 +23,10 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState<{ lettersArray: string[] }>({
     lettersArray: [],
   });
-  const onClick = () => {
+  const initialiseGame = (mode: number) => {
     setIsStart(false);
     loadHangmanWord();
+    setLives(lives + mode);
   };
   const audio = new Audio(music);
 
@@ -57,34 +58,36 @@ function App() {
     <div className='main-frame'>
       <div className='main-window'>
         <HomeTitle currentState={isStart} className={'main-header header-bounce'} body={'HangMan'} transitionTime={1} />
-        <HomeButton currentState={isStart} onClick={onClick} className='easy button' body='Easy' transitionTime={1} />
-        <HomeButton currentState={isStart} onClick={onClick} className='button' body='Hard' transitionTime={1} />
+        <HomeButton currentState={isStart} onClick={() => initialiseGame(10)} className='easy button' body='Easy' transitionTime={1} />
+        <HomeButton currentState={isStart} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
         <Button variant='contained' className='option' onClick={() => console.log('Change here for Modal!')}>
           <Settings />
         </Button>
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
         <div className='hang-man' />
-        <HangmanLetters
-          setHasWon={setHasWon}
-          lives={lives}
-          setLives={setLives}
-          className={'logic'}
-          hangmanWord={hangmanWord}
-          guessedLetters={guessedLetters}
-          displayedWord={displayedWord}
-          setDisplayedWord={setDisplayedWord}
-        />
-        <h3>{lives} lives left</h3>
         {!isStart && (
-          <TextField
-            id='filled-basic'
-            label='Guess Here!'
-            variant='filled'
-            className='input-field'
-            value={guess}
-            // onChange={e => setGuess(e.currentTarget.value)}
-            onChange={e => test(e.currentTarget.value)}
-          />
+          <div>
+            <HangmanLetters
+              setHasWon={setHasWon}
+              lives={lives}
+              setLives={setLives}
+              className={'logic'}
+              hangmanWord={hangmanWord}
+              guessedLetters={guessedLetters}
+              displayedWord={displayedWord}
+              setDisplayedWord={setDisplayedWord}
+            />
+            <h3>{lives} lives left</h3>
+            <TextField
+              id='filled-basic'
+              label='Guess Here!'
+              variant='filled'
+              className='input-field'
+              value={guess}
+              // onChange={e => setGuess(e.currentTarget.value)}
+              onChange={e => test(e.currentTarget.value)}
+            />
+          </div>
         )}
         <Dialog open={hasWon} keepMounted onClose={() => setHasWon(false)} aria-describedby='alert-dialog-slide-description'>
           {' '}
@@ -92,6 +95,9 @@ function App() {
           <DialogContent>
             <DialogContentText id='alert-dialog-slide-description'>Congratulations! You guessed the word!</DialogContentText>
           </DialogContent>
+          <DialogActions>
+            <Button onClick={() => window.location.reload()}>Try again?</Button>
+          </DialogActions>
         </Dialog>
         <Dialog open={lives == 0} keepMounted onClose={() => setHasWon(false)} aria-describedby='alert-dialog-slide-description'>
           {' '}
