@@ -1,20 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Settings, VolumeUp, VolumeMute } from '@mui/icons-material';
-import { Box, Button, Typography, Modal } from '@mui/material';
+import { Box, Button, Modal } from '@mui/material';
 
-const boxStyle = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  overflow: 'auto',
-  whiteSpace: 'normal',
-  display: 'inline-flex',
-  bgcolor: 'background.paper',
-  color: 'primary.main', 
-};
-
-function OptionMenu() {
+function OptionMenu(props) {
+  const audioElem = props.audioElem;
   const [open, setOpen] = useState(false);
  
   return (
@@ -22,27 +11,31 @@ function OptionMenu() {
       <Button variant='contained' className='option' onClick={() => setOpen(true)}>
         <Settings />
       </Button>
-      <Modal 
-        open={open}
-        onClose={() => setOpen(false)} 
-      >
-        <Box sx={boxStyle}>
-          <SoundButton />
-          <Typography pt={2} fontWeight={'bold'}>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Box className='modal-box'>
+          <SoundButton audioElem={audioElem}/>
+          <p className='credits'>
             Credits: Elroy, Dillon, Claudia, Felicia Mah, Felicia Gan
-          </Typography>
+          </p>
         </Box>
       </Modal>
     </div>
   );
 }
 
-function SoundButton() {
-  const [sound, setSound] = useState(true);
+function SoundButton(props) {
+  const audioElem = props.audioElem;
+  const [sound, setSound] = useState(!audioElem.paused);
   
+  useEffect(() => {
+      sound ? audioElem.play() : audioElem.pause();
+    },
+    [sound]
+  );
+
   return (
-    <Button variant='contained' className='option' onClick={() => setSound(!sound)}>
-      <VolumeUp />
+    <Button variant='contained' className='sound-button' onClick={() => setSound(!sound)}>
+      {sound ? <VolumeUp /> : <VolumeMute />}
     </Button>
   );
 }
