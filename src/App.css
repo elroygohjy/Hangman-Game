@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30vw;
+  width: 600px;
   height: 100vh;
   position: relative;
   border-radius: 10px;
@@ -77,6 +77,16 @@
   height: 40vh;
   background: black;
 }
+.keyboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 30vh;
+  position: relative;
+  border-radius: 10px;
+}
 
 .sound-button {
   width: 10px;
@@ -108,4 +118,40 @@
   .modal-box {
     width: 90vw;
   }
+}
+
+.keyboard-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 10px solid transparent;
+  background-color: #D3D6DA;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  bottom: 0;
+  margin-bottom: 10px;
+}
+.keyboard-row {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.key-button {
+  margin: 1px;
+  min-width: 2.5vw;
+  padding-top: 5px;
+  height: 40px;
+  box-shadow: inset 0 0 5px 0 midnightblue;
+}
+
+.pressed {
+  background-color: grey;
+  box-shadow: inset 0 0 5px 0 black;
+}
+.pressed:hover {
+  background-color: #909090;
+}
+.button-text {
+  position: absolute;
+  left: 10px;
+  top:0;
 }

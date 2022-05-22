@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Settings } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
+import Keyboard from './components/Keyboard';
 import HomeButton from './components/HomeButton';
 import HomeTitle from './components/HomeTitle';
 // @ts-ignore
@@ -30,16 +31,7 @@ function App() {
         </Button>
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
         <div className='hang-man' />
-        {!isStart && (
-          <TextField
-            id='filled-basic'
-            label='Guess Here!'
-            variant='filled'
-            className='input-field'
-            value={guess}
-            onChange={e => setGuess(e.currentTarget.value)}
-          />
-        )}
+        {!isStart && <Keyboard className='keyboard' />}
         <OptionMenu />
       </div>
     </div>
