@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Settings } from '@mui/icons-material';
 import { Button, TextField } from '@mui/material';
+import Keyboard from './components/Keyboard';
 import HomeButton from './components/HomeButton';
 import HomeTitle from './components/HomeTitle';
 // @ts-ignore
@@ -39,6 +40,7 @@ function App() {
             onChange={e => setGuess(e.currentTarget.value)}
           />
         )}
+        {!isStart && <Keyboard className='keyboard' />}
       </div>
     </div>
   );
