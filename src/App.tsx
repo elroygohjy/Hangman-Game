@@ -61,7 +61,7 @@ function App() {
         <HomeTitle currentState={isStart} className={'main-header header-bounce'} body={'HangMan'} transitionTime={1} />
         <HomeButton currentState={isStart} onClick={() => initialiseGame(10)} className='easy button' body='Easy' transitionTime={1} />
         <HomeButton currentState={isStart} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
-        <OptionMenu audio={audio} setAudio={setAudio} />
+        <OptionMenu audio={audio} setAudio={setAudio} isStart={isStart} setIsStart={setIsStart} />
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
         <div className='hang-man' />
         {!isStart && (

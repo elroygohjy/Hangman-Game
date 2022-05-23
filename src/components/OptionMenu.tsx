@@ -5,12 +5,20 @@ import { Box, Button, Modal } from '@mui/material';
 interface audioMenuProps {
   audio: HTMLAudioElement;
   setAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement>>;
+  isStart?: boolean;
+  setIsStart?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function OptionMenu({ audio, setAudio }: audioMenuProps) {
+function OptionMenu({ audio, setAudio, setIsStart, isStart }: audioMenuProps) {
   const audioElem = audio;
   const [open, setOpen] = useState(false);
 
+  const onClickBackButton = () => {
+    setIsStart!(true);
+    setOpen(false);
+  };
+
+  // @ts-ignore
   return (
     <div>
       <Button variant='contained' className='option' onClick={() => setOpen(true)}>
@@ -22,6 +30,11 @@ function OptionMenu({ audio, setAudio }: audioMenuProps) {
           <div className='setting-divider' />
           <p className='credits'>Credits: Elroy, Dillon, Claudia, Felicia Mah, Felicia Gan</p>
           <SoundButton audio={audioElem} setAudio={setAudio} />
+          {!isStart && (
+            <Button variant='contained' className='back-button' onClick={() => onClickBackButton()}>
+              Back to Home Screen?
+            </Button>
+          )}
         </Box>
       </Modal>
     </div>
