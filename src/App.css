@@ -113,3 +113,13 @@
 .logic {
   font-size: 60px;
 }
+
+.setting-header {
+  margin-bottom: 0;
+}
+.setting-divider {
+  height: 2px;
+  width: 150px;
+  background-color: #405392;
+  margin-bottom: 0.2rem;
+}

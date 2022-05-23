@@ -18,6 +18,8 @@ function OptionMenu({ audio, setAudio }: audioMenuProps) {
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className='modal-box'>
+          <h1 className='setting-header'>Settings</h1>
+          <div className='setting-divider' />
           <p className='credits'>Credits: Elroy, Dillon, Claudia, Felicia Mah, Felicia Gan</p>
           <SoundButton audio={audioElem} setAudio={setAudio} />
         </Box>
@@ -43,7 +45,7 @@ function SoundButton({ audio, setAudio }: audioMenuProps) {
 
   return (
     <Button variant='contained' className='sound-button' onClick={() => onClickAudioButton()}>
-      {!isAudioPlayed ? <VolumeUp /> : <VolumeMute />}
+      {isAudioPlayed ? <VolumeUp /> : <VolumeMute />}
     </Button>
   );
 }
