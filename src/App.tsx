@@ -3,6 +3,7 @@ import { Settings } from '@mui/icons-material';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, TextField } from '@mui/material';
 import HomeButton from './components/HomeButton';
 import HomeTitle from './components/HomeTitle';
+import OptionMenu from './components/OptionMenu';
 // @ts-ignore
 import music from './music.mp3';
 import './App.css';
@@ -28,7 +29,7 @@ function App() {
     loadHangmanWord();
     setLives(lives + mode);
   };
-  const audio = new Audio(music);
+  const [audio, setAudio] = useState(new Audio(music));
 
   useEffect(() => {
     audio.loop = true;
@@ -60,9 +61,7 @@ function App() {
         <HomeTitle currentState={isStart} className={'main-header header-bounce'} body={'HangMan'} transitionTime={1} />
         <HomeButton currentState={isStart} onClick={() => initialiseGame(10)} className='easy button' body='Easy' transitionTime={1} />
         <HomeButton currentState={isStart} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
-        <Button variant='contained' className='option' onClick={() => console.log('Change here for Modal!')}>
-          <Settings />
-        </Button>
+        <OptionMenu audio={audio} setAudio={setAudio} isStart={isStart} setIsStart={setIsStart} />
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
         <div className='hang-man' />
         {!isStart && (
