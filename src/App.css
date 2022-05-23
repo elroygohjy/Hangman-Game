@@ -3,7 +3,7 @@
   justify-content: center;
 }
 .main-window {
-  background-image: linear-gradient(to bottom right, #FFFBC2, #FDF196, #ECC876);
+  background-image: linear-gradient(to bottom right, #fffbc2, #fdf196, #ecc876);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +18,7 @@
   animation-duration: 2s;
   animation-iteration-count: infinite;
   position: absolute;
-  color: #3D4780;
+  color: #3d4780;
   font-size: 4rem;
   top: 5rem;
   border: 4px solid #756994;
@@ -26,7 +26,7 @@
   padding-right: 10px;
   padding-top: 10px;
   border-radius: 20px;
-  background: #F2F6F8;
+  background: #f2f6f8;
 }
 
 .button {
@@ -64,9 +64,15 @@
 }
 
 @keyframes header-bounce {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-30px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .input-field {
@@ -102,16 +108,19 @@
   transform: translate(-50%, -50%);
   overflow: auto;
   display: flex;
-  background-color: #FFFBC2;
-  color: #3D4780;
+  background-color: #fffbc2;
+  color: #3d4780;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
 }
 
-.logic {
+.letters {
   font-size: 60px;
+  /* background-color: #30d3c5;
+  border: 1px solid red; */
+  letter-spacing: 2px;
 }
 
 .setting-header {

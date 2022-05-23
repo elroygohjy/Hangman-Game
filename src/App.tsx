@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-var-requires: "off" */
 import React, { useEffect, useState } from 'react';
 import { Settings } from '@mui/icons-material';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, TextField } from '@mui/material';
@@ -19,7 +20,7 @@ function App() {
   //The letters that will be displayed to the user, '_' as an unguessed letter
   const [displayedWord, setDisplayedWord] = useState('');
   //For now only 1 word, will add more later https://www.ef.edu/english-resources/english-vocabulary/top-3000-words/
-  const hangmanWord = 'hello';
+  const [hangmanWord, setHangmanWord] = useState('');
   //To store the array of letters that the user has tried
   const [guessedLetters, setGuessedLetters] = useState<{ lettersArray: string[] }>({
     lettersArray: [],
@@ -52,7 +53,13 @@ function App() {
   //Initialise word at start of game
   function loadHangmanWord() {
     const loadedWord = '_ ';
-    setDisplayedWord(loadedWord.repeat(hangmanWord.length));
+    const mode = require('./components/HangmanWordDatabase.json');
+    let chosenWord = '';
+    while (chosenWord.length < 5 || chosenWord.length > 8) {
+      chosenWord = mode[Math.floor(Math.random() * mode.length)].word;
+    }
+    setHangmanWord(chosenWord);
+    setDisplayedWord(loadedWord.repeat(chosenWord.length));
   }
 
   return (
@@ -70,7 +77,7 @@ function App() {
               setHasWon={setHasWon}
               lives={lives}
               setLives={setLives}
-              className={'logic'}
+              className={'letters'}
               hangmanWord={hangmanWord}
               guessedLetters={guessedLetters}
               displayedWord={displayedWord}
