@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Settings, VolumeUp, VolumeMute } from '@mui/icons-material';
 import { Box, Button, Modal } from '@mui/material';
 
-function OptionMenu(props) {
-  const audioElem = props.audioElem;
+interface audioMenuProps {
+  audio: HTMLAudioElement;
+  setAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement>>;
+}
+
+function OptionMenu({ audio, setAudio }: audioMenuProps) {
+  const audioElem = audio;
   const [open, setOpen] = useState(false);
- 
+
   return (
     <div>
       <Button variant='contained' className='option' onClick={() => setOpen(true)}>
@@ -13,29 +18,32 @@ function OptionMenu(props) {
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <Box className='modal-box'>
-          <SoundButton audioElem={audioElem}/>
-          <p className='credits'>
-            Credits: Elroy, Dillon, Claudia, Felicia Mah, Felicia Gan
-          </p>
+          <p className='credits'>Credits: Elroy, Dillon, Claudia, Felicia Mah, Felicia Gan</p>
+          <SoundButton audio={audioElem} setAudio={setAudio} />
         </Box>
       </Modal>
     </div>
   );
 }
 
-function SoundButton(props) {
-  const audioElem = props.audioElem;
-  const [sound, setSound] = useState(!audioElem.paused);
-  
-  useEffect(() => {
-      sound ? audioElem.play() : audioElem.pause();
-    },
-    [sound]
-  );
+function SoundButton({ audio, setAudio }: audioMenuProps) {
+  const audioElement = audio;
+  const [isAudioPlayed, setIsAudioPlayed] = useState(!audio.paused);
+
+  const onClickAudioButton = () => {
+    if (isAudioPlayed) {
+      audioElement.pause();
+      setIsAudioPlayed(false);
+    } else {
+      audioElement.play();
+      setIsAudioPlayed(true);
+    }
+    setAudio(audioElement);
+  };
 
   return (
-    <Button variant='contained' className='sound-button' onClick={() => setSound(!sound)}>
-      {sound ? <VolumeUp /> : <VolumeMute />}
+    <Button variant='contained' className='sound-button' onClick={() => onClickAudioButton()}>
+      {!isAudioPlayed ? <VolumeUp /> : <VolumeMute />}
     </Button>
   );
 }
