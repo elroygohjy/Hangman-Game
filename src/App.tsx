@@ -41,7 +41,9 @@ function App() {
   //To be modified with keyboard(add setGuessedLetters({ lettersArray: [...guessedLetters.lettersArray, value] }); to new keyboard function)
   function test(value: string) {
     if (value.split('').length === 1 && value !== '') {
-      setGuessedLetters({ lettersArray: [...guessedLetters.lettersArray, value] });
+      if (!guessedLetters.lettersArray.includes(value)) {
+        setGuessedLetters({ lettersArray: [...guessedLetters.lettersArray, value] });
+      }
     }
     console.log(value);
     console.log(displayedWord);
