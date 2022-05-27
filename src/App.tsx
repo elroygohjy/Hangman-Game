@@ -9,6 +9,7 @@ import OptionMenu from './components/OptionMenu';
 import music from './music.mp3';
 import './App.css';
 import HangmanLetters from './components/HangmanLetters';
+import HangmanDrawing from './components/HangmanDrawing';
 
 function App() {
   const [isStart, setIsStart] = useState(true);
@@ -72,7 +73,7 @@ function App() {
         <HomeButton currentState={isStart} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
         <OptionMenu audio={audio} setAudio={setAudio} isStart={isStart} setIsStart={setIsStart} />
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
-        <div className='hang-man' />
+        <HangmanDrawing lives={lives} />
         {!isStart && (
           <div>
             <HangmanLetters
@@ -85,7 +86,7 @@ function App() {
               displayedWord={displayedWord}
               setDisplayedWord={setDisplayedWord}
             />
-            <h3>{lives} lives left</h3>
+            <h3 className='display-lives'>{lives} lives left</h3>
             <TextField
               id='filled-basic'
               label='Guess Here!'
