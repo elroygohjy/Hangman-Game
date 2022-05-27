@@ -121,8 +121,15 @@
   /* background-color: #30d3c5;
   border: 1px solid red; */
   letter-spacing: 2px;
+  position: absolute;
+  bottom: 20vh;
+  left: 25%;
 }
-
+.display-lives{
+  position: absolute;
+  bottom: 5vh;
+  left: 15%;
+}
 .setting-header {
   margin-bottom: 0;
 }
@@ -134,4 +141,88 @@
 }
 .back-button {
   margin-bottom: 1rem;
+}
+.hangman-base {
+  height: 10px;
+  width: 200px;
+  background-color: black;
+  position: absolute;
+  bottom: 30vh;
+}
+.hangman-stand {
+  height:250px;
+  width: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: 30vh;
+  left: 12vw;
+}
+.hangman-hori {
+  height: 5px;
+  width: 100px;
+  background-color: black;
+  position: absolute;
+  bottom: calc(250px + 30vh);
+  left: 12vw;
+}
+.hangman-hang {
+  height: 25px;
+  width: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: calc(230px + 30vh);
+  left: calc(12vw + 100px);
+}
+.hangman-head{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 5px solid black;
+  position: absolute;
+  bottom: calc(30vh + 250px - 25px - 5px - 25px - 25px);
+  left: calc(12vw + 100px - 25px);
+}
+.hangman-body{
+  height: 100px;
+  width: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: calc(30vh + 250px - 25px - 5px - 25px - 25px - 100px);
+  left: calc(12vw + 100px);
+}
+.hangman-left-hand {
+  height: 40px;
+  width: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: calc(30vh + 250px - 25px - 5px - 25px - 25px - 60px);
+  left: calc(12vw + 100px - 19px);
+  transform: rotate(60deg);
+}
+.hangman-right-hand {
+  height: 40px;
+  width: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: calc(30vh + 250px - 25px - 5px - 25px - 25px - 60px);
+  left: calc(12vw + 100px - 19px + 5px + 31px);
+  transform: rotate(120deg);
+}
+.hangman-left-leg {
+  height: 60px;
+  width: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: calc(30vh + 100px - 75px);
+  left: calc(12vw + 100px - 25px);
+  transform: rotate(60deg);
+}
+.hangman-right-leg {
+  height: 60px;
+  width: 5px;
+  background-color: black;
+  position: absolute;
+  bottom: calc(30vh + 100px - 75px);
+  left: calc(12vw + 100px + 28px);
+  transform: rotate(120deg);  
 }
