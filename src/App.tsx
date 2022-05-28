@@ -24,9 +24,7 @@ function App() {
   //For now only 1 word, will add more later https://www.ef.edu/english-resources/english-vocabulary/top-3000-words/
   const [hangmanWord, setHangmanWord] = useState('');
   //To store the array of letters that the user has tried
-  const [guessedLetters, setGuessedLetters] = useState<{ lettersArray: string[] }>({
-    lettersArray: [],
-  });
+  const [pressed, setPressed] = useState<string[]>([]);
   const initialiseGame = (mode: number) => {
     setIsStartScreen(false);
     loadHangmanWord();
@@ -39,20 +37,6 @@ function App() {
     audio.play();
     //Add function here
   }, []);
-
-  //To be modified with keyboard(add setGuessedLetters({ lettersArray: [...guessedLetters.lettersArray, value] }); to new keyboard function)
-  function test(value: string) {
-    if (value.split('').length === 1 && value !== '') {
-      if (!guessedLetters.lettersArray.includes(value)) {
-        setGuessedLetters({ lettersArray: [...guessedLetters.lettersArray, value] });
-      }
-    }
-    console.log(value);
-    console.log(displayedWord);
-    console.log(guessedLetters);
-    console.log(lives);
-    setGuess(value);
-  }
 
   //Initialise word at start of game
   function loadHangmanWord() {
@@ -89,14 +73,13 @@ function App() {
               setLives={setLives}
               className={'letters'}
               hangmanWord={hangmanWord}
-              guessedLetters={guessedLetters}
+              pressed={pressed}
               displayedWord={displayedWord}
               setDisplayedWord={setDisplayedWord}
             />
-            <h3 className='display-lives'>{lives} lives left</h3>
           </div>
         )}
-        {!isStartScreen && <Keyboard className='keyboard' />}
+        {!isStartScreen && <Keyboard className='keyboard' pressed={pressed} setPressed={setPressed} />}
         <Dialog open={hasWon} keepMounted onClose={() => setHasWon(false)} aria-describedby='alert-dialog-slide-description'>
           {' '}
           <DialogTitle>{'Success!'}</DialogTitle>

@@ -127,13 +127,12 @@
 }
 
 .letters {
-  font-size: 60px;
-  /* background-color: #30d3c5;
-  border: 1px solid red; */
+  position: relative;
+  font-size: 50px;
   letter-spacing: 2px;
-  position: absolute;
-  bottom: 20vh;
-  left: 25%;
+  top: 20vh;
+  text-align: center;
+  width: 100%;
 }
 .display-lives{
   position: absolute;
