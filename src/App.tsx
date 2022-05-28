@@ -1,6 +1,7 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 import React, { useEffect, useState } from 'react';
 import { Settings } from '@mui/icons-material';
+import Keyboard from './components/Keyboard';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, TextField } from '@mui/material';
 import HomeButton from './components/HomeButton';
 import HomeTitle from './components/HomeTitle';
@@ -72,7 +73,8 @@ function App() {
         <HomeButton currentState={isStart} onClick={() => initialiseGame(10)} className='easy button' body='Easy' transitionTime={1} />
         <HomeButton currentState={isStart} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
         <OptionMenu audio={audio} setAudio={setAudio} isStart={isStart} setIsStart={setIsStart} />
-        {/*TODO: use vh so that the user keyboard will compress the hangman*/}
+        <div className='hang-man' />
+        {!isStart && <Keyboard className='keyboard' />}
         <HangmanDrawing lives={lives} />
         {!isStart && (
           <div>
