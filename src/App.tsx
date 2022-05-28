@@ -1,7 +1,6 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 import React, { useEffect, useState } from 'react';
 import { Settings } from '@mui/icons-material';
-import Keyboard from './components/Keyboard';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, TextField } from '@mui/material';
 import HomeButton from './components/HomeButton';
 import HomeTitle from './components/HomeTitle';
@@ -11,14 +10,15 @@ import music from './music.mp3';
 import './App.css';
 import HangmanLetters from './components/HangmanLetters';
 import HangmanDrawing from './components/HangmanDrawing';
+import Keyboard from './components/Keyboard';
 
 function App() {
-  const [isStart, setIsStart] = useState(true);
+  const [isStartScreen, setIsStartScreen] = useState(true);
   //To display the winning dialog
   const [hasWon, setHasWon] = useState(false);
   const [guess, setGuess] = useState('');
   //Number of hangman lives/tries a user has
-  const [lives, setLives] = useState(1);
+  const [lives, setLives] = useState(0);
   //The letters that will be displayed to the user, '_' as an unguessed letter
   const [displayedWord, setDisplayedWord] = useState('');
   //For now only 1 word, will add more later https://www.ef.edu/english-resources/english-vocabulary/top-3000-words/
@@ -28,9 +28,9 @@ function App() {
     lettersArray: [],
   });
   const initialiseGame = (mode: number) => {
-    setIsStart(false);
+    setIsStartScreen(false);
     loadHangmanWord();
-    setLives(lives + mode);
+    setLives(mode);
   };
   const [audio, setAudio] = useState(new Audio(music));
 
@@ -69,14 +69,19 @@ function App() {
   return (
     <div className='main-frame'>
       <div className='main-window'>
-        <HomeTitle currentState={isStart} className={'main-header header-bounce'} body={'HangMan'} transitionTime={1} />
-        <HomeButton currentState={isStart} onClick={() => initialiseGame(10)} className='easy button' body='Easy' transitionTime={1} />
-        <HomeButton currentState={isStart} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
-        <OptionMenu audio={audio} setAudio={setAudio} isStart={isStart} setIsStart={setIsStart} />
-        <div className='hang-man' />
-        {!isStart && <Keyboard className='keyboard' />}
-        <HangmanDrawing lives={lives} />
-        {!isStart && (
+        <HomeTitle currentState={isStartScreen} className={'main-header header-bounce'} body={'HangMan'} transitionTime={1} />
+        <HomeButton
+          currentState={isStartScreen}
+          onClick={() => initialiseGame(10)}
+          className='easy button'
+          body='Easy'
+          transitionTime={1}
+        />
+        <HomeButton currentState={isStartScreen} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
+        <OptionMenu audio={audio} setAudio={setAudio} isStart={isStartScreen} setIsStart={setIsStartScreen} />
+        {/*TODO: use vh so that the user keyboard will compress the hangman*/}
+        <HangmanDrawing lives={lives} isStarted={isStartScreen} />
+        {!isStartScreen && (
           <div>
             <HangmanLetters
               setHasWon={setHasWon}
@@ -89,17 +94,9 @@ function App() {
               setDisplayedWord={setDisplayedWord}
             />
             <h3 className='display-lives'>{lives} lives left</h3>
-            <TextField
-              id='filled-basic'
-              label='Guess Here!'
-              variant='filled'
-              className='input-field'
-              value={guess}
-              // onChange={e => setGuess(e.currentTarget.value)}
-              onChange={e => test(e.currentTarget.value)}
-            />
           </div>
         )}
+        {!isStartScreen && <Keyboard className='keyboard' />}
         <Dialog open={hasWon} keepMounted onClose={() => setHasWon(false)} aria-describedby='alert-dialog-slide-description'>
           {' '}
           <DialogTitle>{'Success!'}</DialogTitle>
@@ -110,7 +107,12 @@ function App() {
             <Button onClick={() => window.location.reload()}>Try again?</Button>
           </DialogActions>
         </Dialog>
-        <Dialog open={lives == 0} keepMounted onClose={() => setHasWon(false)} aria-describedby='alert-dialog-slide-description'>
+        <Dialog
+          open={lives == 0 && !isStartScreen}
+          keepMounted
+          onClose={() => setHasWon(false)}
+          aria-describedby='alert-dialog-slide-description'
+        >
           {' '}
           <DialogTitle>{'Failure'}</DialogTitle>
           <DialogContent>
