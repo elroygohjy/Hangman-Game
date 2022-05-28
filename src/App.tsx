@@ -10,6 +10,7 @@ import music from './music.mp3';
 import './App.css';
 import HangmanLetters from './components/HangmanLetters';
 import HangmanDrawing from './components/HangmanDrawing';
+import Keyboard from './components/Keyboard';
 
 function App() {
   const [isStartScreen, setIsStartScreen] = useState(true);
@@ -93,17 +94,9 @@ function App() {
               setDisplayedWord={setDisplayedWord}
             />
             <h3 className='display-lives'>{lives} lives left</h3>
-            <TextField
-              id='filled-basic'
-              label='Guess Here!'
-              variant='filled'
-              className='input-field'
-              value={guess}
-              // onChange={e => setGuess(e.currentTarget.value)}
-              onChange={e => test(e.currentTarget.value)}
-            />
           </div>
         )}
+        {!isStartScreen && <Keyboard className='keyboard' />}
         <Dialog open={hasWon} keepMounted onClose={() => setHasWon(false)} aria-describedby='alert-dialog-slide-description'>
           {' '}
           <DialogTitle>{'Success!'}</DialogTitle>
@@ -129,8 +122,6 @@ function App() {
             <Button onClick={() => window.location.reload()}>Try again?</Button>
           </DialogActions>
         </Dialog>
-        <div className='hang-man' />
-        {!isStart && <Keyboard className='keyboard' />}
       </div>
     </div>
   );
