@@ -327,3 +327,43 @@
     height: 30vh;
   }
 }
+
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-color: #d3d6da;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.keyboard-button {
+  min-width: 2.5vw;
+  height: 40px;
+  margin-right: 1px;
+  box-shadow: inset 0 0 5px 0 midnightblue;
+}
+
+.keyboard-row {
+  margin: 3px;
+}
+
+.keyboard-key {
+  position: absolute;
+  left: 5px;
+  top: 1px;
+}
+
+.pressed {
+  background-color: grey;
+  box-shadow: inset 0 0 5px 0 black;
+}
+
+.pressed:hover {
+  background-color: #909090;
+  box-shadow: inset 0 0 5px 0 black;
+}

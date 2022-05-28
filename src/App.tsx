@@ -129,6 +129,8 @@ function App() {
             <Button onClick={() => window.location.reload()}>Try again?</Button>
           </DialogActions>
         </Dialog>
+        <div className='hang-man' />
+        {!isStart && <Keyboard className='keyboard' />}
       </div>
     </div>
   );
