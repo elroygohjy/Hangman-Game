@@ -30,16 +30,6 @@ function App() {
         </Button>
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
         <div className='hang-man' />
-        {!isStart && (
-          <TextField
-            id='filled-basic'
-            label='Guess Here!'
-            variant='filled'
-            className='input-field'
-            value={guess}
-            onChange={e => setGuess(e.currentTarget.value)}
-          />
-        )}
         {!isStart && <Keyboard className='keyboard' />}
       </div>
     </div>
