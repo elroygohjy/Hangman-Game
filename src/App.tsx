@@ -99,7 +99,9 @@ function App() {
           {' '}
           <DialogTitle>{'Failure'}</DialogTitle>
           <DialogContent>
-            <DialogContentText id='alert-dialog-slide-description'>Unfortunately, you did not guess the word</DialogContentText>
+            <DialogContentText id='alert-dialog-slide-description'>
+              Unfortunately, you did not guess the word. The correct word is {hangmanWord}.
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => window.location.reload()}>Try again?</Button>

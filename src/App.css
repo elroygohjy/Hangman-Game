@@ -133,6 +133,7 @@
   top: 20vh;
   text-align: center;
   width: 100%;
+  margin-bottom: 100px;
 }
 .display-lives{
   position: absolute;
