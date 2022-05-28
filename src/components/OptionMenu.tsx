@@ -6,15 +6,17 @@ interface audioMenuProps {
   audio: HTMLAudioElement;
   setAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement>>;
   isStart?: boolean;
-  setIsStart?: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsStartScreen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setLives?: React.Dispatch<React.SetStateAction<number>>;
 }
 
-function OptionMenu({ audio, setAudio, setIsStart, isStart }: audioMenuProps) {
+function OptionMenu({ audio, setAudio, setIsStartScreen, isStart, setLives }: audioMenuProps) {
   const audioElem = audio;
   const [open, setOpen] = useState(false);
 
   const onClickBackButton = () => {
-    setIsStart!(true);
+    setIsStartScreen!(true);
+    setLives!(0);
     setOpen(false);
   };
 

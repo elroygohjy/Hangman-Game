@@ -78,7 +78,7 @@ function App() {
           transitionTime={1}
         />
         <HomeButton currentState={isStartScreen} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
-        <OptionMenu audio={audio} setAudio={setAudio} isStart={isStartScreen} setIsStart={setIsStartScreen} />
+        <OptionMenu audio={audio} setAudio={setAudio} isStart={isStartScreen} setIsStartScreen={setIsStartScreen} setLives={setLives} />
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
         <HangmanDrawing lives={lives} isStarted={isStartScreen} />
         {!isStartScreen && (
