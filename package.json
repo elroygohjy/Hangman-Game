@@ -24,7 +24,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "serve -s build",
     "build": "craco build",
     "test": "craco test",
     "lint-fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
