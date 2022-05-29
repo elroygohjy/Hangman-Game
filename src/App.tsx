@@ -1,7 +1,6 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 import React, { useEffect, useState } from 'react';
-import { Settings } from '@mui/icons-material';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Slide, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import HomeButton from './components/HomeButton';
 import HomeTitle from './components/HomeTitle';
 import OptionMenu from './components/OptionMenu';
@@ -16,7 +15,6 @@ function App() {
   const [isStartScreen, setIsStartScreen] = useState(true);
   //To display the winning dialog
   const [hasWon, setHasWon] = useState(false);
-  const [guess, setGuess] = useState('');
   //Number of hangman lives/tries a user has
   const [lives, setLives] = useState(0);
   //The letters that will be displayed to the user, '_' as an unguessed letter
@@ -62,7 +60,14 @@ function App() {
           transitionTime={1}
         />
         <HomeButton currentState={isStartScreen} onClick={() => initialiseGame(6)} className='button' body='Hard' transitionTime={1} />
-        <OptionMenu audio={audio} setAudio={setAudio} isStart={isStartScreen} setIsStartScreen={setIsStartScreen} setLives={setLives} />
+        <OptionMenu
+          audio={audio}
+          setAudio={setAudio}
+          isStart={isStartScreen}
+          setIsStartScreen={setIsStartScreen}
+          setLives={setLives}
+          setPressed={setPressed}
+        />
         {/*TODO: use vh so that the user keyboard will compress the hangman*/}
         <HangmanDrawing lives={lives} isStarted={isStartScreen} />
         {!isStartScreen && (
@@ -79,7 +84,7 @@ function App() {
             />
           </div>
         )}
-        {!isStartScreen && <Keyboard className='keyboard' pressed={pressed} setPressed={setPressed} />}
+        {!isStartScreen && <Keyboard pressed={pressed} setPressed={setPressed} />}
         <Dialog open={hasWon} keepMounted onClose={() => setHasWon(false)} aria-describedby='alert-dialog-slide-description'>
           {' '}
           <DialogTitle>{'Success!'}</DialogTitle>

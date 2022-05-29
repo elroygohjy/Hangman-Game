@@ -348,7 +348,7 @@
   border: 2px solid transparent;
   border-radius: 10px;
   background-color: #d3d6da;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 }
 
 .key-button {

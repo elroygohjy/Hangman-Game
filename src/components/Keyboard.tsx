@@ -1,13 +1,12 @@
 import Button from '@mui/material/Button';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 interface keyboardProps {
-  className: string;
   pressed: string[];
   setPressed: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const Keyboard = ({ className, pressed, setPressed }: keyboardProps) => {
+const Keyboard = ({ pressed, setPressed }: keyboardProps) => {
   const firstRowKeyboard = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
   const secondRowKeyboard = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
   const thirdRowKeyboard = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];

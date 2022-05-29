@@ -8,15 +8,17 @@ interface audioMenuProps {
   isStart?: boolean;
   setIsStartScreen?: React.Dispatch<React.SetStateAction<boolean>>;
   setLives?: React.Dispatch<React.SetStateAction<number>>;
+  setPressed?: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-function OptionMenu({ audio, setAudio, setIsStartScreen, isStart, setLives }: audioMenuProps) {
+function OptionMenu({ audio, setAudio, setIsStartScreen, isStart, setLives, setPressed }: audioMenuProps) {
   const audioElem = audio;
   const [open, setOpen] = useState(false);
 
   const onClickBackButton = () => {
     setIsStartScreen!(true);
     setLives!(0);
+    setPressed!([]);
     setOpen(false);
   };
 
